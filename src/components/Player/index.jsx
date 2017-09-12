@@ -1,28 +1,27 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Counter from '../Counter'
 
-class Player extends Component {
-  render(){
+const Player = props =>  {
     return(
       <div className="player">
         <div className="player-name">
-          <a className="remove-player" onClick={this.props.onRemove}>&#10006;</a>
-          {this.props.name}
+          <a className="remove-player" onClick={() => props.removePlayer(props.index)}>&#10006;</a>
+          {props.name}
         </div>
         <div className="player-score">
-          <Counter score={this.props.score} onChange={this.props.onScoreChange}/>
+          <Counter index={props.index} score={props.score} updatePlayerScore={props.updatePlayerScore}/>
         </div>
       </div>
     );
-  }
 }
 
 Player.propTypes = {
   name: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
-  onScoreChange: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired
+  removePlayer: PropTypes.func.isRequired,
+  updatePlayerScore: PropTypes.func.isRequired
 }
 
 export default Player;

@@ -1,10 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-class Stats extends Component {
-  render(){
-    let totalPlayers = this.props.players.length
-    let totalPoints = this.props.players.reduce((total, player)=> {
+const Stats = props =>  {
+    let totalPlayers = props.players.length
+    let totalPoints = props.players.reduce((total, player)=> {
       return total + player.score
     }, 0)
     return(
@@ -21,7 +20,6 @@ class Stats extends Component {
         </tbody>
       </table>
     )
-  }
 }
 
 Stats.propTypes = {

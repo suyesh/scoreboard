@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import PlayerReducer from './reducers/player'
 import './assets/css/index.css';
-import App from './components/App';
+import ScoreBoard from './containers/ScoreBoard';
 import registerServiceWorker from './helpers/registerServiceWorker';
 
-let PLAYERS = [
-  {
-    name: 'Suyesh Bhandari',
-    score: 31,
-    id: 1
-  },
-  {
-    name: 'Carlos Castillo',
-    score: 10,
-    id: 2
-  }
-]
+const store = createStore(
+  PlayerReducer,
+  window.devToolsExtension && window.devToolsExtension()
+);
 
-ReactDOM.render(<App players={PLAYERS}/>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <ScoreBoard/>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
